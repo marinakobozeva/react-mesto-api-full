@@ -1,0 +1,19 @@
+.page__popup-photo-content {
+  background-color: transparent;
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, auto);
+  grid-row-gap: 10px;
+}
+
+@media screen and (max-width: 649px) {
+  .page__popup_photo-content {
+    top: 136px;
+  }
+}

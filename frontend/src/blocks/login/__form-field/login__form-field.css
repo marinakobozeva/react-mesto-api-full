@@ -1,0 +1,6 @@
+.login__form-field {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, auto);
+  grid-row-gap: 30px;
+}

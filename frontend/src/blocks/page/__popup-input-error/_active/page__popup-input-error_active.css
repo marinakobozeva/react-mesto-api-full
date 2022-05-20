@@ -1,0 +1,7 @@
+.page__popup-input-error_active {
+  visibility: visible;
+  color: #FF0000;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+}
