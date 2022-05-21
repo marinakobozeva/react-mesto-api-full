@@ -68,7 +68,7 @@ class Auth {
 }
 
 export default new Auth({
-  baseUrl: 'https://auth.nomoreparties.co',
+  baseUrl: 'http://localhost:3001/api',
   headers: {
     'Content-Type': 'application/json'
   }

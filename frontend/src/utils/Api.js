@@ -11,25 +11,38 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._options.baseUrl}/cards`,
-      {headers: this._options.headers}
+      {
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        }
+      }
     )
       .then(this._checkResponse)
   }
 
-  getPersonalInformation() {
+  getPersonalInformation(token) {
     return fetch(`${this._options.baseUrl}/users/me`,
-      {headers: this._options.headers}
+      {
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        }
+      }
     )
       .then(this._checkResponse)
   }
 
-  changePersonalInformation({ name, info }) {
+  changePersonalInformation({ name, info }, token) {
     return fetch(`${this._options.baseUrl}/users/me`,
       {
         method: 'PATCH',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        },
         body: JSON.stringify({
           name: name,
           about: info,
@@ -38,11 +51,14 @@ class Api {
       .then(this._checkResponse)
   }
 
-  changeAvatar(avatarUrl) {
+  changeAvatar(avatarUrl, token) {
     return fetch(`${this._options.baseUrl}/users/me/avatar`,
       {
         method: 'PATCH',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        },
         body: JSON.stringify({
           avatar: avatarUrl,
         })
@@ -50,20 +66,26 @@ class Api {
       .then(this._checkResponse)
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}`,
       {
         method: 'DELETE',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        }
       })
       .then(this._checkResponse)
   }
 
-  addCard({ name, link }) {
+  addCard({ name, link }, token) {
     return fetch(`${this._options.baseUrl}/cards`,
       {
         method: 'POST',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        },
         body: JSON.stringify({
           name: name,
           link: link,
@@ -72,29 +94,34 @@ class Api {
       .then(this._checkResponse)
   }
 
-  like(cardId) {
+  like(cardId, token) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`,
       {
         method: 'PUT',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        }
       })
       .then(this._checkResponse)
   }
 
-  dislike(cardId) {
+  dislike(cardId, token) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`,
       {
         method: 'DELETE',
-        headers: this._options.headers,
+        headers: {
+          ...this._options.headers,
+          "Authorization" : `Bearer ${token}`,
+        }
       })
       .then(this._checkResponse)
   }
 }
 
 export default new Api({
-  baseUrl: 'https://nomoreparties.co/v1/cohort35',
+  baseUrl: 'http://localhost:3001/api',
   headers: {
-    authorization: '9b276f44-ded2-4e62-b628-d257305c5531',
     'Content-Type': 'application/json'
   }
 })
