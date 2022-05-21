@@ -17,8 +17,10 @@ class Auth {
         return res.json()
       } else if (res.status === 400) {
         return Promise.reject('Некорректно заполнено одно из полей')
+      } else if (res.status === 409) {
+        return Promise.reject('Данный email уже зарегистрирован')
       } else {
-        Promise.reject(`Unexpected error code: ${res.status}`)
+        return Promise.reject(`Unexpected error code: ${res.status}`)
       }
     })
   }
@@ -40,7 +42,7 @@ class Auth {
       } else if (res.status === 401) {
         return Promise.reject('Пользователь с таким email не найден')
       } else {
-        Promise.reject(`Unexpected error code: ${res.status}`)
+        return Promise.reject(`Unexpected error code: ${res.status}`)
       }
     })
   }
@@ -61,7 +63,7 @@ class Auth {
       } else if (res.status === 401) {
         return Promise.reject('Переданный токен некорректен')
       } else {
-        Promise.reject(`Unexpected error code: ${res.status}`)
+        return Promise.reject(`Unexpected error code: ${res.status}`)
       }
     })
   }
