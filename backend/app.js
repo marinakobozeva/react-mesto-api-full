@@ -46,16 +46,23 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use('/api/users', auth, require('./routes/users'));
-app.use('/api/cards', auth, require('./routes/cards'));
+app.use('/users', auth, require('./routes/users'));
+app.use('/cards', auth, require('./routes/cards'));
 
-app.post('/api/signin', celebrate({
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().min(3).required().email(),
     password: Joi.string().required(),
   }),
 }), login);
-app.post('/api/signup', celebrate({
+
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
@@ -65,7 +72,7 @@ app.post('/api/signup', celebrate({
   }),
 }), createUser);
 
-app.use('/api', auth, (req, res, next) => {
+app.use(auth, (req, res, next) => {
   next(new NotFoundError('Указанный маршрут не найден'));
 });
 
