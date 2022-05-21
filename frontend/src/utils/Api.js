@@ -119,8 +119,10 @@ class Api {
   }
 }
 
+const { NODE_ENV, API_URL } = process.env;
+
 export default new Api({
-  baseUrl: 'http://localhost:3000/api',
+  baseUrl: NODE_ENV === 'production' ? API_URL : 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json'
   }
