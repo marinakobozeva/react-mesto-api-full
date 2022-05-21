@@ -122,7 +122,7 @@ class Api {
 const { REACT_APP_NODE_ENV, REACT_APP_API_URL } = process.env;
 
 export default new Api({
-  baseUrl: REACT_APP_NODE_ENV === 'production' ? REACT_APP_API_URL : 'http://localhost:3000/api',
+  baseUrl: REACT_APP_NODE_ENV === 'production' ? REACT_APP_API_URL : 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }
