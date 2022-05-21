@@ -67,10 +67,10 @@ class Auth {
   }
 }
 
-const { NODE_ENV, API_URL } = process.env;
+const { REACT_APP_NODE_ENV, REACT_APP_API_URL } = process.env;
 
 export default new Auth({
-  baseUrl: NODE_ENV === 'production' ? API_URL : 'http://localhost:3000/api',
+  baseUrl: REACT_APP_NODE_ENV === 'production' ? REACT_APP_API_URL : 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json'
   }
