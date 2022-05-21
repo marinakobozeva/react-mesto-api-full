@@ -1,11 +1,8 @@
 import React from 'react';
 import Card from '../components/Card'
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useContext } from 'react';
 import pencil from '../images/pencil.png';
 import plus from '../images/plus.png';
-import api from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function Main(props) {
